@@ -8,6 +8,7 @@ import os
 
 load_dotenv()  # Load environment variables from .env file
 application = Flask(__name__)
+genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
 
 @application.get('/summary')
 def summary_api():
@@ -92,7 +93,7 @@ def extractive_summarization(transcript):
     Returns:
     - summary (str): The summarized text.
     """
-    genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
+
     model = genai.GenerativeModel('gemini-1.0-pro-latest')
     try:
         prompt_template = f"""
@@ -100,12 +101,6 @@ def extractive_summarization(transcript):
 
                             Video Transcript:
                             {transcript}
-
-                            Summary Instructions:
-                            - Identify the key topics, ideas, and takeaways from the video transcript
-                            - Organize the main points in a logical and coherent structure
-                            - Maintain the original context and meaning of the video content
-                            - Use clear and straightforward language in the summary
 
                             Summary:
                             """
