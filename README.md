@@ -40,6 +40,7 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
   ```
   pip install -r Requirements.txt
   ```
+- Next create a .env file with your gemini API key `GOOGLE_API_KEY=<your-key-here>`
 - To execute the Application locally:
   - Start the Flask backend on the terminal using the following command:
 
