@@ -12,7 +12,8 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
 
 
 # YouTube-Transcript-Summarizer
-**Youtube Transcript Summarizer** is a Chrome Extension that allows users to get a **summarized** version of the transcripts of YouTube videos with a **single click**. It utilizes Natural Language Processing (NLP) algorithms such as **Latent Semantic Analysis** (LSA) and **state-of-the-art Huggingface Transformer models** to efficiently summarize the transcripts of YouTube videos with a single click. It is built on a **Flask Backend REST API** to expose the summarization service to the client.
+
+**Youtube Transcript Summarizer** is a Chrome Extension that allows users to get a **summarized** version of the transcripts of YouTube videos with a **single click**. It is built on a **Flask Backend REST API** to expose the summarization service to the client.
 
 
 ## Project Stages
@@ -32,7 +33,8 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
 - Clone this repository to your local machine:
 -
   ```
-  git clone https://github.com/yourusername/YouTube-Transcript-Summarizer.git
+  git clone https://github.com/<your-username>/geminihackathon24.git
+
   cd YouTube-Transcript-Summarizer
   ```
 - Next, install the dependencies:
@@ -40,6 +42,7 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
   ```
   pip install -r Requirements.txt
   ```
+
 - Next create a .env file with your gemini API key `GOOGLE_API_KEY=<your-key-here>`
 - To execute the Application locally:
   - Start the Flask backend on the terminal using the following command:
@@ -64,4 +67,3 @@ Contributions to this project are *welcome!* If you wish to contribute, please f
 - Push your changes to your fork.
 - Create a Pull Request from your fork to this repository.
 - Make sure to update the ```Requirements.txt``` file if you've added any new dependencies.
->>>>>>> source_repo/main
