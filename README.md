@@ -37,6 +37,8 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
 
   cd YouTube-Transcript-Summarizer
   ```
+- Next, use conda to `conda create -n hackathonEnv`
+- Then run `conda activate hackathonEnv`
 - Next, install the dependencies:
 -
   ```
