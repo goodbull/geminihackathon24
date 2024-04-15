@@ -1,7 +1,7 @@
 # Gemini Hackathon 2024
 Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal analysis chrome plugin.
 
-## Youtube Multimodal Video Analysis Chrmoe Plugin
+## Youtube Multimodal Video Analysis Chrome Plugin
 ## Team Members:
 ### Vinicus Granja
 ### Jay Park
