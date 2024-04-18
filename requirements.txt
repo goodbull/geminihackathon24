@@ -2,6 +2,7 @@ langchain
 langchain-core
 langchain-community
 langchain-experimental
+langchain_google_genai
 langgraph
 annotated-types==0.6.0
 cachetools==5.3.3
