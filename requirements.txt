@@ -68,3 +68,4 @@ urllib3
 Werkzeug
 wheel
 youtube-transcript-api
+google-cloud-secret-manager
