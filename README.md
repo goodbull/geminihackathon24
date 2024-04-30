@@ -9,6 +9,7 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
 ### Antoine
 ### Hector
 ### Andrew Irwin
+### Trenten Babcock
 
 
 # YouTube-Transcript-Summarizer
