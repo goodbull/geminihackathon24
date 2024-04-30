@@ -69,3 +69,10 @@ Werkzeug
 wheel
 youtube-transcript-api
 google-cloud-secret-manager
+pytube
+moviepy
+ipykernel
+opencv-python
+pandas
+plotly
+nbformat
