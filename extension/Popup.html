@@ -1,106 +1,33 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 <!DOCTYPE html>
 <html>
-<!-- 
-    This HTML file serves as the popup page for the Youtube Transcript Summarizer Chrome extension. 
+
+<!--
+    This HTML file serves as the popup page for the Youtube Transcript Summarizer Chrome extension.
     It includes a button that users can click to summarize the transcript of a YouTube video.
     The file also contains styling to make the popup visually appealing.
     -->
 
 <head>
     <title>Youtube Transcript Summarizer</title>
-    <style>
-        h1 {
-            text-align: center;
-        }
-
-        body {
-            width: max-content;
-            max-width: 400px;
-        }
-
-        .button {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 6px 14px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
-            border-radius: 6px;
-            border: none;
-
-            color: #fff;
-            background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
-            background-origin: border-box;
-            box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-        }
-
-
-
-        .button:focus {
-            box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-            outline: 0;
-        }
-
-
-        p {
-            font-size: medium;
-        }
-
-        .tab {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
-        }
-
-        /* Style the buttons that are used to open the tab content */
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            color: black;
-        }
-
-        /* Change background color of buttons on hover */
-        .tab button:hover {
-            background-color: #ddd;
-        }
-
-        /* Create an active/current tablink class */
-        .tab button.active {
-            background-color: #ccc;
-        }
-
-        /* Style the tab content */
-        .tabcontent {
-            display: block;
-            padding: 6px 12px;
-            border: 1px solid #ccc;
-            border-top: none;
-            color: black;
-            animation: fadeEffect 1s;
-            /* Fading effect takes 1 second */
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body>
-    <h1>
+<body style="background-color: white;">
+    <h1 class="roboto-bold , h1-box" style="color: white";>
         Youtube Transcript Summarizer
     </h1>
     <div class="tab">
         <button class="tablinks" id="defaultOpen">Summary</button>
-        <button class="tablinks">Chat</button>
+        <button class="tablinks" >Chat</button>
     </div>
 
     <!-- Tab content -->
     <div id="Summary" class="tabcontent">
-        <h3 style="display: inline-block;">This is the summary section, Click to Summarize
+        <h3 style="display: inline-block;">
+            This is the summary section, Click to Summarize
             <button id="summarize" type="button-10">
                 Summarize
             </button>
