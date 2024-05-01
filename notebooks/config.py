@@ -5,9 +5,7 @@ from google.cloud import secretmanager
 project_id = "vertexai-gemini-hackathon-2024"
 
 # ID of the secret to create.
-secret_id = "projects/931568092155/secrets/service_account_key
-
-"
+secret_id = "projects/931568092155/secrets/service_account_key"
 
 # Create the Secret Manager client.
 client = secretmanager.SecretManagerServiceClient()

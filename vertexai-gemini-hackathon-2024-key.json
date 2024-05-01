@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "vertexai-gemini-hackathon-2024",
+  "private_key_id": "a74ca9d5fc17ff56792f33e715b9990b23fef28c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDAj3irwImddMOH\nvtvm1hkkPg479tB6AlAZQPCvhEjti+tiSJpSGif/qh2I0eY2SFw4Pm+df2rDF/0Z\nZ3o6xegO717OJrWLAxrt036LtDVuYT6CQqMF7Q7pJ/4WYMlVQE4YoGSm5BWZSFOL\nv/4x1YrUKHu5cI6YH5Zc5FJT1IcAtVr4U4I9waABuMFe3Ex+fZuqA+fSmaPvubb2\nEtidAj3doeB1q/jYa1uppXN0j85ZNa+X2AP1REGfiL2q1irwXOz0c1vIw9nKlNRR\nrYJFwvdUw4DAx2OgYG6J9DeB5VYtUIfJn/duR+C+Y84GUTdWUHet1KF3jo9Y1N+8\nKJpOhvW5AgMBAAECggEAA0+0TIfQFgQXBLOUhoCyB/yFNCTHawG1LOn/+ZS1yFf6\noUMMXFMU0wGy5lJtugs+gr0YIEY7qMU11gUAhhg3KGKXZ8YkoxJXmTVk3LQpow9L\nCuRod0afVgUZCnt5mtyzOxsu/+u2L1+eCC4yCdtZOtLDZen4mccZR9mpTMW/2JQ+\nG6lwUoOqqYZ6gZkUiqSwxUYGj/tux5ghnqm7jvfINnZVu+XlQ5FdqPAMuuJ6FDkb\ngk10yICZ255VSzCAxputIC/wjVCVdZFYUycNz81ec3jC8ed+9XJWrRgXkOEkeHWg\ncQB8d5WWo9ZWVc1xTo0ms1Zjl2kOHlYSZnzACOhg8QKBgQD9A7UiM1dvdbbIHNBY\nivtvMPwZz8ACdnjRIP+33dYcsoNOgG45e2yld5yvOzJ62j5mE6fdO1iDZhei9qTK\nh7SI+dVIuLNnd5AsHHB+EHeGb+l+Ddi56sclYXU3DmfSxCy6+Ymml+AgWgQLK9As\nJI5ZSldDg/Cq5ElNaIZNSjv81QKBgQDC1SXC3MKC9ZnuVltsoa5f0TYuUlq1AKf5\n3k7RifEHcd3Jjqcb75eIeBAcX7TJrtpFye58JQyZJhcsE2pmSh3jcS0DGrWjIKKN\nSoEricEMTUsJluR44oHceztjRMNlhGA+s0FeOTQjGzyDckq6yLXLmCsnexRYcN4W\nZuhfREF3VQKBgQCSQKFkmp7xG+9DL3yzoesDdCJV3UQVaFwgLt4Cb6YDwqCqMQ0G\nBzVfVIvqsuJUJ3GoWbZP6K0aj1ocZkwNknImN5w1RCbYKUHabboM9QHSYUBsEB72\nISNqlTJHV/ll2OYuUm5iMSpqKP5rYrEbwynRrWpR6aOldP52U3RGmyGf3QKBgQC/\nnO1EVeUe8vjuxBOqJODf71v/9pKrDPgm8BJIVgessLnVbuy+tsYrOxltLlsZN1QH\n6u8XPUDEpgeIG5g6/Y2jkD0annwg8QmtN6cN8K7hsGqqBbKxiOL6ul/P42LgRm55\ne8ZAKrYyCKldBVylkpvoncFjVNLPoEFres3yU6im+QKBgQCtwTf0HOxKPHzFda7K\nUBI8ieXS3eId3ESqzRW/VSmiwIe4cYB4U03Or2FssIbUBmEGG4hbXpd7gDiFSXtl\nm1o5fIAOZTA6gPDfvNcYBGGyfq5bDyqGV2o5AmIROwOvZlRc30onDDz/q3S9OUJH\nHirF8s62m/BWRq/nvikPx+qt0Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "vertexai-gemini-hackathon-id@vertexai-gemini-hackathon-2024.iam.gserviceaccount.com",
+  "client_id": "106172847400171716497",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/vertexai-gemini-hackathon-id%40vertexai-gemini-hackathon-2024.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
