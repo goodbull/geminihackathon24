@@ -41,8 +41,7 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
 
 - Create the conda environment using the `environment.yml` file: `conda env create -f environment.yml`
 - Activate the conda environment: `conda activate hackathonEnv`
-- Then run `conda activate hackathonEnv`
-- Next, install the dependencies:
+- Next, install the dependencies: 
 -
   ```
   pip install -r Requirements.txt
