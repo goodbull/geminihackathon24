@@ -77,3 +77,4 @@ pandas
 plotly
 nbformat
 langchain-google-vertexai
+langchain_openai
