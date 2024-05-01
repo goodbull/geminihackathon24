@@ -8,5 +8,6 @@ GEMINI_1_5_VIDEO_PROMPT=""" You are provided with a video. Analyze the video and
 6. locations: <a list of all locations mentioned in the video as a valid python list>
 7. age_appropriateness: <What age is the video appropriate for?>
 8. movie_content_warnings: <a collection of all content warnings applicable to the video?
-Make sure you generate the final output in a valid json format.
+Make sure you generate the final output in a valid json format enclosed within opening and closing curly braces.
+Do not add the word json to the beginning of your response.
 """
