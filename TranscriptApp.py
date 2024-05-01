@@ -4,11 +4,12 @@ from youtube_transcript_api import YouTubeTranscriptApi
 from langdetect import detect
 import google.generativeai as genai
 from dotenv import load_dotenv
+from Gemini_Video_Summary import Gemini_Summarization
 import os
 
 load_dotenv()  # Load environment variables from .env file
 application = Flask(__name__)
-genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
+genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
 @application.get('/summary')
 def summary_api():
@@ -31,6 +32,7 @@ def summary_api():
     url = request.args.get('url', '')
     max_length = int(request.args.get('max_length', 150))
     video_id = url.split('=')[1]
+    summarizer = Gemini_Summarization()
 
     try:
         transcript = get_transcript(video_id)
@@ -38,12 +40,12 @@ def summary_api():
         return "No subtitles available for this video", 404
 
     try:
-        summary = extractive_summarization(transcript)
+        final_summary, combined_summaries = summarizer.complete_summarization(transcript, is_YU_url=False)
     except Exception as e:
         print(f"Error occurred during summarization: {str(e)}")
         return "An error occurred during summarization. Please try again later.", 500
 
-    return summary, 200
+    return final_summary, 200
 
 def is_transcript_english(transcript):
     """

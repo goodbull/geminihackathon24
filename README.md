@@ -9,6 +9,7 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
 ### Antoine
 ### Hector
 ### Andrew Irwin
+### Trenten Babcock
 
 
 # YouTube-Transcript-Summarizer
@@ -37,9 +38,10 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
 
   cd YouTube-Transcript-Summarizer
   ```
-- Next, use conda to `conda create -n hackathonEnv`
-- Then run `conda activate hackathonEnv`
-- Next, install the dependencies:
+
+- Create the conda environment using the `environment.yml` file: `conda env create -f environment.yml`
+- Activate the conda environment: `conda activate hackathonEnv`
+- Next, install the dependencies: 
 -
   ```
   pip install -r Requirements.txt
