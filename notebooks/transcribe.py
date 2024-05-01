@@ -3,7 +3,7 @@ Performs a transcription of a Youtube Video
 Author: Pradeep Mohan
 Date: 04/15/2024
 """
-from typing import List
+from typing import List, Optional, Type
 
 from langchain.output_parsers import PydanticOutputParser
 from langchain.prompts import PromptTemplate
@@ -11,7 +11,10 @@ from langchain_core.pydantic_v1 import BaseModel, Field, validator
 from langchain.tools import BaseTool, StructuredTool, tool
 from youtube_transcript_api import YouTubeTranscriptApi
 import re
-
+from langchain.callbacks.manager import (
+    AsyncCallbackManagerForToolRun,
+    CallbackManagerForToolRun,
+)
 class YoutubeVideoTranscriberSchema(BaseModel):
     """Inputs to the YoutubeVideoTranscriber"""
     url: str = Field(
@@ -23,24 +26,6 @@ class YoutubeVideoTranscriberTool(BaseTool):
     name = "Youtube_Video_Transcriber"
     description = "useful for when you need to transcribe a Youtube video given as a valid Youtube URL"
     args_schema: Type[BaseModel] = YoutubeVideoTranscriberSchema
-    
-    
-    def get_clean_transcript(self, video_url):
-    """Takes a youtube video id (in the video link, can look like: YrVVXFMgXrw). 
-        Pulls transcript and returns clean   version."""
-        # checks to see if full link then returns just id
-        if "v=" in video_id:
-            video_id = parse_video_id(video_url)
-        # Pull transcript
-        script = YouTubeTranscriptApi.get_transcript(video_url)
-        # Combine 'text' fields into one string
-        input_string = ' '.join([line['text'] for line in script])
-        # remove special charaters
-        pattern = re.compile(r'[^a-zA-Z0-9\s.,;:!"\'()\-—–?‘’“”\[\]]')
-        transcript =  pattern.sub('', input_string)
-
-        return transcript
-    
     def parse_video_id(self, video_url):
         try:
             # Split the URL by "v="
@@ -52,6 +37,22 @@ class YoutubeVideoTranscriberTool(BaseTool):
             print("Invalid URL format")
             return None
 
+    def get_clean_transcript(self, video_url):
+        """Takes a youtube video id (in the video link, can look like: YrVVXFMgXrw). 
+            Pulls transcript and returns clean   version.
+        """
+        # checks to see if full link then returns just id
+        if "v=" in video_id:
+            video_id = self.parse_video_id(video_url)
+        # Pull transcript
+        script = YouTubeTranscriptApi.get_transcript(video_url)
+        # Combine 'text' fields into one string
+        input_string = ' '.join([line['text'] for line in script])
+        # remove special charaters
+        pattern = re.compile(r'[^a-zA-Z0-9\s.,;:!"\'()\-—–?‘’“”\[\]]')
+        transcript =  pattern.sub('', input_string)
+
+        return transcript
     def _run(
         self, url: str, run_manager: Optional[CallbackManagerForToolRun] = None
     ) -> str:
