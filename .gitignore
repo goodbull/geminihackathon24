@@ -160,6 +160,7 @@ cython_debug/
 #.idea/
 .env
 credentials.json
+vertexai-gemini-hackathon-2024-key.json
 
 # Mac OS created files
 .DS_Store
