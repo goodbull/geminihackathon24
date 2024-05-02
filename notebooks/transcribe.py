@@ -37,6 +37,7 @@ from tool_schemas import (
 )
 from task_configs import (
 GEMINI_1_5_VIDEO_PROMPT, 
+GEMINI_1_5_PRO_AUDIO_PROMPT,
 VIDEO_PART_MAX_DURATION,
 GEMINI_GENERATION_CONFIG,
 GEMINI_SAFETY_SETTINGS,
@@ -101,15 +102,23 @@ class YoutubeVideoTranscriberTool(BaseTool):
 
 class GeminiProAudioTranscriberTool(BaseTool):
     """Gemini 1.5 Pro based audio Transcriber Tool to be callable by an Agent"""
-    name = "Youtube_Video_Transcriber"
+    name = "gemini_pro_audio_transcriber"
     description = "useful for when you need to transcribe an audio file using Gemini 1.5 Pro given as a valid Google Cloud Storage URI"
     args_schema: Type[BaseModel] = GeminiAudioTranscriberSchema
     def _run(
-        self, url: str, run_manager: Optional[CallbackManagerForToolRun] = None
+        self, uris: List[str], run_manager: Optional[CallbackManagerForToolRun] = None
     ) -> str:
         """Use the Gemini Audio Transcriber Tool."""
+        generative_multimodal_model = GenerativeModel(model_name='gemini-1.5-pro-latest', 
+                                                          generation_config=GEMINI_GENERATION_CONFIG,
+                                                          safety_settings=GEMINI_SAFETY_SETTINGS)
         transcript = ""
-        #TODO: Pradeep to complete this
+        audio_files = list(map(lambda x: Part.from_uri(x, mime_type="audio/mp3"),uris))
+        contents = list(map(lambda x: [x,GEMINI_1_5_PRO_AUDIO_PROMPT],audio_files))
+        contents = collapse(contents)
+        response = generative_multimodal_model.generate_content(contents,stream=True)
+        response_chunk_text = [str(chunk.text) for chunk in response]
+        transcript = '\n'.join(response_chunk_text)
         return transcript
 
     async def _arun(
