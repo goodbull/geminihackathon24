@@ -106,6 +106,7 @@ class GeminiProAudioTranscriberTool(BaseTool):
         self, url: str, run_manager: Optional[CallbackManagerForToolRun] = None
     ) -> str:
         """Use the Gemini Audio Transcriber Tool."""
+        transcript = ""
         #TODO: Pradeep to complete this
         return transcript
 
