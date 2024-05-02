@@ -15,11 +15,7 @@ from langchain.callbacks.manager import (
     AsyncCallbackManagerForToolRun,
     CallbackManagerForToolRun,
 )
-class YoutubeVideoTranscriberSchema(BaseModel):
-    """Inputs to the YoutubeVideoTranscriber"""
-    url: str = Field(
-        description="Youtube Video URL or Video ID"
-    )
+from tool_schemas import YoutubeVideoTranscriberSchema
 
 class YoutubeVideoTranscriberTool(BaseTool):
     """Custom Youtube Video Transcriber Tool to be callable by an Agent"""

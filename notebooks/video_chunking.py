@@ -4,6 +4,9 @@ import moviepy.editor as mp
 from dataclasses import dataclass
 from pathlib import Path
 import cv2
+from task_configs import DEFAULT_VIDEOS_BUCKET
+from google.cloud import storage
+
 
 class VideoPreprocessor:
     METADATA_FILE = 'metadata.json'
@@ -13,6 +16,7 @@ class VideoPreprocessor:
         self.video_dir = None
         self.video_path = None
         self.audio_path = None
+        self.
 
 
     def download_youtube_video(self, youtube_url):
