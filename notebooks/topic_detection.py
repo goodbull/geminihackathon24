@@ -14,6 +14,7 @@ from vertexai.preview import generative_models
 from vertexai.preview.generative_models import GenerativeModel, Part
 from video_chunking import VideoPreprocessor
 from langchain_core.messages import HumanMessage
+from transcribe import YoutubeVideoTranscriberTool
 from tool_schemas import (
     GeminiProVisionVideoInfoExtractionSchema, 
     GeminiProVideoJsonStringParserSchema,

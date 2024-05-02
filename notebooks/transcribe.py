@@ -10,12 +10,42 @@ from langchain.prompts import PromptTemplate
 from langchain_core.pydantic_v1 import BaseModel, Field, validator
 from langchain.tools import BaseTool, StructuredTool, tool
 from youtube_transcript_api import YouTubeTranscriptApi
+import vertexai
+from langchain_google_vertexai import ChatVertexAI
+from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.prompts import PromptTemplate
+from langchain_core.pydantic_v1 import BaseModel, Field
+from langchain.tools import BaseTool, StructuredTool, tool
+from typing import List, Dict, Optional, Type
+from langchain_google_vertexai import VertexAI
+from langchain_core.utils.function_calling import convert_to_openai_tool
+from langchain_google_vertexai import HarmBlockThreshold, HarmCategory
+from langchain_core.utils.function_calling import convert_to_openai_function
+from vertexai.preview import generative_models
+from vertexai.preview.generative_models import GenerativeModel, Part
+from video_chunking import VideoPreprocessor
+from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 import re
 from langchain.callbacks.manager import (
     AsyncCallbackManagerForToolRun,
     CallbackManagerForToolRun,
 )
-from tool_schemas import YoutubeVideoTranscriberSchema
+from tool_schemas import (
+    YoutubeVideoTranscriberSchema,
+    GeminiAudioTranscriberSchema
+)
+from task_configs import (
+GEMINI_1_5_VIDEO_PROMPT, 
+VIDEO_PART_MAX_DURATION,
+GEMINI_GENERATION_CONFIG,
+GEMINI_SAFETY_SETTINGS,
+DEFAULT_GEMINI_BATCH_SIZE,
+DEFAULT_BATCH_PROCESSING_DELAY, 
+DEFAULT_VIDEOS_BUCKET)
+import json
+import traceback
+from more_itertools import chunked, collapse
+import time
 
 class YoutubeVideoTranscriberTool(BaseTool):
     """Custom Youtube Video Transcriber Tool to be callable by an Agent"""
@@ -67,4 +97,23 @@ class YoutubeVideoTranscriberTool(BaseTool):
         raise NotImplementedError("custom_search does not support async")
 
 
+class GeminiProAudioTranscriberTool(BaseTool):
+    """Gemini 1.5 Pro based audio Transcriber Tool to be callable by an Agent"""
+    name = "Youtube_Video_Transcriber"
+    description = "useful for when you need to transcribe an audio file using Gemini 1.5 Pro given as a valid Google Cloud Storage URI"
+    args_schema: Type[BaseModel] = GeminiAudioTranscriberSchema
+    def _run(
+        self, url: str, run_manager: Optional[CallbackManagerForToolRun] = None
+    ) -> str:
+        """Use the Gemini Audio Transcriber Tool."""
+        #TODO: Pradeep to complete this
+        return transcript
+
+    async def _arun(
+        self, query: str, run_manager: Optional[AsyncCallbackManagerForToolRun] = None
+    ) -> str:
+        """Use the tool asynchronously."""
+        raise NotImplementedError("custom_search does not support async")
+
+    
     

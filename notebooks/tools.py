@@ -15,7 +15,7 @@ from langchain_core.utils.function_calling import convert_to_openai_function
 from vertexai.preview import generative_models
 from vertexai.preview.generative_models import GenerativeModel, Part
 from video_chunking import VideoPreprocessor
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from tool_schemas import (
     GeminiProVisionVideoInfoExtractionSchema, 
     GeminiProVideoJsonStringParserSchema,
