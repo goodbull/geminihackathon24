@@ -183,3 +183,14 @@ class VideoPreprocessor:
             self.audio_path = Path(metadata.get('audio_path')) if metadata.get('audio_path') else None
             self.segment_paths = [Path(p) for p in metadata.get('segment_paths', [])]
             self.audio_paths = [Path(p) for p in metadata.get('audio_paths', [])]
+    def upload_to_cloud_storage(self,bucket):
+        """ Uploads the entire directory, its subdirectories containing all video segments, 
+            images, audios to cloud storage and returns the cloud storage uri of all the files
+            Reference: https://cloud.google.com/storage/docs/samples/storage-transfer-manager-upload-directory
+            Returns: a python dictionary containing all the respective extracted and 
+                     chunked entities and their respective uris using the same keys as in the metadata.
+        """
+        cloud_storage_metadata_dict = {}
+        #TODO: Andrew to implement this feature using the reference provided
+        return cloud_storage_metadata_dict
+        

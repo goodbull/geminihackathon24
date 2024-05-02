@@ -68,13 +68,13 @@ class GeminiProVisionVideoInfoExtractionTool(BaseTool):
             video_chunker.download_youtube_video(video_url)
             video_chunker.basic_segmentation()
             #Extract the key frames of the video
-            
-            
+            video_chunker.extract_frames()
+            #extract audio chunks
+            video_chunker.extract_audio()
+            #save the metadata
+            video_chunker.save_metadata()            
             #Upload the Videos, the frames, the audio files and the transcripts to Cloud Storage
-            
-            #use the audio files in cloud storage and generate a transcript of the audios
-            #merge the transcripts to a single piece of text
-            
+            cloud_storage_metadata_dict = video_chunker.upload_to_cloud_storage(bucket=DEFAULT_VIDEOS_BUCKET)
             #Get the uris of the video segments in cloud storage
             urilist = []
             #Create batches of uris to 
