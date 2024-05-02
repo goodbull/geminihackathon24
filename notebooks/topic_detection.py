@@ -57,12 +57,12 @@ class GeminiProVisionVideoInfoExtractionTool(BaseTool):
         if url is None and uri is not None:
             #Process uri, at this point it will be a valid uri of a Google Cloud Storage bucket
             video_file = Part.from_uri(uri, mime_type="video/mp4")
-            generative_multimodal_model = GenerativeModel(model_name="gemini-1.5-pro-latest",
-                                              generation_config=GEMINI_GENERATION_CONFIG)
+            generative_multimodal_model = GenerativeModel(model_name="gemini-1.5-pro-latest", 
+                                                          generation_config=GEMINI_GENERATION_CONFIG)
             contents = [video_file, GEMINI_1_5_VIDEO_PROMPT]
             response = generative_multimodal_model.generate_content(contents)
             response_text = str(response.text)
-        else if uri is None and url is not None:
+        elif uri is None and url is not None:
             #Process url using Video Processor and get the default segments of the video
             video_chunker = VideoPreprocessor(output_directory="videos/")
             video_chunker.download_youtube_video(video_url)
@@ -85,7 +85,7 @@ class GeminiProVisionVideoInfoExtractionTool(BaseTool):
             
             
             
-        return response_text, transcript
+        return response_text
 
     async def _arun(
         self, url: str, uri: str, run_manager: Optional[AsyncCallbackManagerForToolRun] = None
