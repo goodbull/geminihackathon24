@@ -1,5 +1,10 @@
 #Library of Gemini Tools used by different features
 #Makes use of Vertex AI, Gemini 1.5 Pro / Gemini 1.0 Pro or Gemini Pro Vision whereever feasible
+"""
+All tools used by LLM to process videos, extract information, used by various downstream tasks
+Author: Pradeep Mohan
+Date: 05/01/2024
+"""
 from google.cloud import aiplatform
 import vertexai
 from langchain_google_vertexai import ChatVertexAI

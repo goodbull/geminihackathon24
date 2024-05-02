@@ -1,3 +1,8 @@
+"""
+All tool schemas used by LLM's Tools to process videos, extract information, used by various downstream tasks
+Author: Pradeep Mohan
+Date: 05/01/2024
+"""
 from langchain_core.pydantic_v1 import BaseModel, Field, validator
 from typing import List, Dict, Type, Optional
 from vertexai.preview.generative_models import GenerativeModel, Part

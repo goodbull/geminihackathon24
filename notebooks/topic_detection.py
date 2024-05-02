@@ -1,3 +1,8 @@
+"""
+Extracts topics from a video's extracted data using BERT Topic
+Author: Pradeep Mohan
+Date: 05/01/2024
+"""
 from google.cloud import aiplatform
 import vertexai
 from langchain_google_vertexai import ChatVertexAI
