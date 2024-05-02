@@ -32,7 +32,8 @@ from langchain.callbacks.manager import (
 )
 from tool_schemas import (
     YoutubeVideoTranscriberSchema,
-    GeminiAudioTranscriberSchema
+    GeminiAudioTranscriberSchema,
+    GoogleCloudSpeechAudioTranscriberSchema
 )
 from task_configs import (
 GEMINI_1_5_VIDEO_PROMPT, 
@@ -46,6 +47,7 @@ import json
 import traceback
 from more_itertools import chunked, collapse
 import time
+from google.cloud import speech
 
 class YoutubeVideoTranscriberTool(BaseTool):
     """Custom Youtube Video Transcriber Tool to be callable by an Agent"""
@@ -116,5 +118,34 @@ class GeminiProAudioTranscriberTool(BaseTool):
         """Use the tool asynchronously."""
         raise NotImplementedError("custom_search does not support async")
 
+class GoogleCloudSpeechAudioTranscriberTool(BaseTool):
+    """Google Cloud Speech  based audio Transcriber Tool to be callable by an Agent"""
+    name = "google_cloud_speech_audio_transcriber"
+    description = "useful for when you need to transcribe an audio file using Gemini 1.5 Pro given as a valid Google Cloud Storage URI"
+    args_schema: Type[BaseModel] = GoogleCloudSpeechAudioTranscriberSchema
     
+    def speech_to_text(self, config: speech.RecognitionConfig, audio: speech.RecognitionAudio) -> speech.RecognizeResponse:
+        client = speech.SpeechClient()
+        # Synchronous speech recognition request
+        response = client.recognize(config=config, audio=audio)
+
+        return response
+    def _run(self, uris: List[str], run_manager: Optional[CallbackManagerForToolRun] = None) -> str:
+        """Use the Google Cloud Speech Audio Transcriber Tool."""
+        transcript = ""
+        transcript_list=[]
+        for uri in uris:
+            config = speech.RecognitionConfig(language_code="en")
+            audio = speech.RecognitionAudio(uri=uri)
+            response = self.speech_to_text(config, audio)
+            transcript_list.append(response.results[0].alternatives[0].transcript)
+        transcript = "\n".join(transcript_list)
+        return transcript
+
+    async def _arun(
+        self, query: str, run_manager: Optional[AsyncCallbackManagerForToolRun] = None
+    ) -> str:
+        """Use the tool asynchronously."""
+        raise NotImplementedError("custom_search does not support async")
+
     
