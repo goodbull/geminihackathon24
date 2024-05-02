@@ -16,7 +16,6 @@ class VideoPreprocessor:
         self.video_dir = None
         self.video_path = None
         self.audio_path = None
-        self.
 
 
     def download_youtube_video(self, youtube_url):

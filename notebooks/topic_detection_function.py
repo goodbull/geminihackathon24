@@ -20,7 +20,7 @@ def detect_topics(text, num_topics=5):
     Returns:
         list: A list of detected topics.
     """
-    llm = ChatVertexAI(model_name="gemini-1.0-pro-001", max_retries=0, temperature=0)
+    llm = ChatVertexAI(model_name="gemini-1.5-pro-latest", max_retries=0, temperature=0)
     structured_llm = llm.with_structured_output(dict_schema)
 
     prompt_template = PromptTemplate(
