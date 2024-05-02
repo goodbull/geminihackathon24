@@ -3,6 +3,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 <!DOCTYPE html>
 <html>
+<!--
+    This HTML file serves as the popup page for the Youtube Transcript Summarizer Chrome extension.
 
 <!--
     This HTML file serves as the popup page for the Youtube Transcript Summarizer Chrome extension.
@@ -39,6 +41,11 @@
 
     <div id="Chat" class="tabcontent">
         <h3>Here is the chat section</h3>
+        <div id="conversation-history"></div>
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button id="send-button">
+            Send
+        </button>
     </div>
 
     <label for="max_length">

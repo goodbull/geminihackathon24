@@ -18,7 +18,7 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
 
 
 ## Project Stages
-![alt text](/extention/images/stages.png?raw=true)
+![alt text](/extension/images/stages.png?raw=true)
 
 
 ## Features
@@ -28,7 +28,7 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
 
 
 ## Output Screenshot
-![alt text](/extention/images/output.png?raw=true)
+![alt text](/extension/images/output.png?raw=true)
 
 ## Installation
 - Clone this repository to your local machine:
@@ -41,7 +41,7 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
 
 - Create the conda environment using the `environment.yml` file: `conda env create -f environment.yml`
 - Activate the conda environment: `conda activate hackathonEnv`
-- Next, install the dependencies: 
+- Next, install the dependencies:
 -
   ```
   pip install -r Requirements.txt

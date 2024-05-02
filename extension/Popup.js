@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const tablinks = document.querySelectorAll('.tablinks');
     const defaultOpen = document.getElementById('defaultOpen');
     const btn = document.getElementById("summarize");
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+    const conversationHistory = document.getElementById('conversation-history');
 
     tablinks.forEach(button => {
         button.addEventListener('click', function (event) {
@@ -42,6 +45,39 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+    // New code for chat functionality
+    sendButton.addEventListener('click', function () {
+        const userMessage = userInput.value.trim();
+        if (userMessage !== '') {
+            sendMessage(userMessage);
+            userInput.value = '';
+        }
+    });
+
+    function sendMessage(message) {
+        // Display user's message in the conversation history
+        conversationHistory.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+
+        // Send user's message to the Flask backend
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://127.0.0.1:5000/chat", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // var response = JSON.parse(xhr.responseText);
+                var response = xhr.responseText;
+                // Display the response in the conversation history
+                conversationHistory.innerHTML += `<p><strong>Assistant:</strong> ${response}</p>`;
+            } else {
+                console.log("Error:", xhr.statusText);
+            }
+        };
+        xhr.onerror = function () {
+            console.log("Error:", xhr.statusText);
+        };
+        xhr.send(JSON.stringify({ message: message }));
+    }
+
 });
 
 function openTab(evt, tabName) {
