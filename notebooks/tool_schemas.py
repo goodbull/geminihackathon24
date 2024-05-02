@@ -4,6 +4,10 @@ from vertexai.preview.generative_models import GenerativeModel, Part
 from google.cloud import storage
 import traceback
 import requests
+from task_configs import (
+    GEMINI_1_5_PRO_SUPPORTED_AUDIO_MIME_TYPES,
+    GEMINI_1_5_PRO_SUPPORTED_AUDIO_FORMATS
+)
 
 class GeminiProVisionVideoInfoExtractionSchema(BaseModel):
     """Inputs to the GeminiProVisionVideoInfoExtractor"""
@@ -22,7 +26,7 @@ class GeminiProVisionVideoInfoExtractionSchema(BaseModel):
                 raise ValueError("This appears to be a path to the parent folder of an object")
             if not bucket.blob(objectname).exists():
                 raise ValueError(f"Appears that the specified object in the uri: {uri} doen't exist")
-            return None
+            return True
         
         if field_values["url"] is None and field_values["uri"] is None:
             raise ValueError("Both Video URL and URI cannot be empty")
@@ -72,6 +76,48 @@ class YoutubeVideoTranscriberSchema(BaseModel):
                 raise ValueError(f"Invalid Youtube Video URL, {field_values["url"]} specified")
         else:
             raise ValueError(f"Invalid URL string")
+
+class GeminiAudioTranscriberSchema(BaseModel):
+    """Inputs to the GeminiAudioTranscriber"""
+    audio_uris: List[str] = Field( description="List of Audio URI inside a Google Cloud Storage Bucket")
+    mime_types: List[str] = Field(description="Mime Type of the Audio")
+    @validator("audio_uris","mime_types")
+    @classmethod
+    def validate_audio_uris(cls,field_values):
+        """Checks if the URI path to an object is a valid one"""
+        def check_audio_uri_exists(uri: str):
+            storage_client = storage.Client()
+            bucket = storage_client.bucket(uri.split('/')[2])
+            objectname = None if len(uri.split('/')) < 4 else "/".join(uri.split("/")[3:])
+            if objectname is None:
+                raise ValueError("This appears to be a path to the parent folder of an object")
+            if not bucket.blob(objectname).exists():
+                raise ValueError(f"Appears that the specified object in the uri: {uri} doen't exist")
+            return True
+        if field_values["audio_uris"] is None or field_values["mime_types"] is None:
+            raise ValueError("Either of Audio URI or Mime Type cannot be None")
+        if len(field_values["audio_uris"])==0 or len(field_values["mime_types"])==0:
+            raise ValueError("Either of Audio URI or Mime Type cannot be empty")
+        if len(field_values["audio_uris"]) != len(field_values["mime_types"]):
+            raise ValueError(f"Lengths of audio_uris and mime_types do not match")
+        audio_uri_valid_cs_uri = list(map(lambda x:x.startswith("gs://"),field_values["audio_uris"]))
+        if audio_uri_valid_cs_uri.count(False)>0:
+            raise ValueError(f"Audio URIs must begin with gs://, {audio_uri_valid_cs_uri.count(False)} fail this test")
+        try:
+            audio_uri_check_list = list(map(lambda x:check_audio_uri_exists(x),field_values["audio_uris"]))
+        except ValueError as e:
+            raise ValueError(f"one of the audio uris is not a valid Google Cloud storage uri")
+        if audio_uri_check_list.count(True) != len(field_values["audio_uris"]):
+            raise ValueError(f"One of the audio uris is not a valid Google Cloud storage uri")
+        mime_type_check_list = list(map(lambda x:True if x in GEMINI_1_5_PRO_SUPPORTED_AUDIO_MIME_TYPES else False,field_values["mime_types"]))
+        if mime_type_check_list.count(False)>0:
+            raise ValueError(f"Invalid Mime Type found in list of audio uris")
+        audio_format_check_list = list(map(lambda x:True if x.split("/")[-1].split(".")[-1].lower() in GEMINI_1_5_PRO_SUPPORTED_AUDIO_FORMATS else False,field_values["audio_uris"]))
+        if audio_format_check_list.count(False)>0:
+            raise ValueError(f"Invalid Audio Format found in list of audio uris")
+
+
+
         
 class VideoTopicExtraction(BaseModel):
     '''An Extraction of Key Features from an input video JSON'''
