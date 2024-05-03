@@ -28,7 +28,7 @@ Deloitte Team Submission GCP/Gemini Hackathon. Showcasing a Youtube Multimodal a
 
 
 ## Output Screenshot
-![alt text](/extension/images/output.png?raw=true)
+[![Watch the video](https://img.youtube.com/vi/bu5BQ0PadBo/default.jpg)](https://www.youtube.com/watch?v=bu5BQ0PadBo)
 
 ## Youtube Link to Demo
 ![alt text](https://www.youtube.com/watch?v=bu5BQ0PadBo)
