@@ -1,12 +1,13 @@
 # Import all the necessary dependencies
 import os
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from youtube_transcript_api import YouTubeTranscriptApi
 from langdetect import detect
 import google.generativeai as genai
 from dotenv import load_dotenv
 from Gemini_Video_Summary import Gemini_Summarization
 from configured_chat import ConfiguredChat
+from notebooks.topic_detection_function import detect_topics_sentiment
 
 load_dotenv()  # Load environment variables from .env file
 application = Flask(__name__)
@@ -52,11 +53,12 @@ def summary_api():
         final_summary, combined_summaries = summarizer.complete_summarization(
             transcript, is_YU_url=False
         )
+        sentiment_topic = detect_topics_sentiment(transcript)
     except Exception as e:
         print(f"Error occurred during summarization: {str(e)}")
         return "An error occurred during summarization. Please try again later.", 500
 
-    return final_summary, 200
+    return jsonify({"summary": final_summary, "topics_sentiments": sentiment_topic}), 200
 
 
 def is_transcript_english(transcript):

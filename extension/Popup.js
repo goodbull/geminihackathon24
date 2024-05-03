@@ -31,13 +31,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 var xhr = new XMLHttpRequest();
                 xhr.open("GET", "http://127.0.0.1:5000/summary?url=" + url + "&max_length=" + maxLength, true);
                 xhr.onload = function () {
-                    var text = xhr.responseText;
+                    var response = JSON.parse(xhr.responseText)
+                    var summary = response.summary;
+                    var sentiment_topics = JSON.parse(response.topics_sentiments);
+                    var topics = sentiment_topics.topics;
+                    var sentiments = sentiment_topics.sentiments;
                     const p = document.getElementById("output");
                     if (xhr.status === 404) {
                         p.innerHTML = "No subtitles available for this video";
                     } else {
-                        p.innerHTML = text;
+                        p.innerHTML = summary;
                     }
+
+                    const topics_div = document.getElementById("topics");
+                    topics_div.innerHTML = topics;
+
+                    const sentiments_div = document.getElementById("sentiments");
+                    sentiments_div.innerHTML = sentiments;
                     btn.disabled = false;
                     btn.innerHTML = "Summarize";
                 }

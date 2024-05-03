@@ -18,7 +18,6 @@ from dotenv import load_dotenv
     GEMINI_GENAI_OBJECT,
     GEMINI_GENERATION_CONFIG,
     GEMINI_SAFETY_SETTINGS
-
 )
 from benchmark_examples import (
     GEMINI_1_5_PRO_BENCHMARK_EXTRACTION_LEX_TUCKER_TRANSCRIPT
@@ -37,7 +36,7 @@ GEMINI_1_5_VIDEO_TRANSCRIPT_PROMPT=""" You are provided with a transcript of vid
 8. movie_content_warnings: <a collection of all content warnings applicable to the video?>
 9. languages: <a collection of key languages spoken in the video>
 10. main_language: <the main or dominant language spoken in the video>
-The information must be extracted only from the video and you must not refer to outside sources. 
+The information must be extracted only from the video and you must not refer to outside sources.
 Make sure you generate the final output in a valid JSON format enclosed within opening and closing curly braces. Do not add the word JSON to the beginning of your response.
 """
 #Generation Config
@@ -78,7 +77,7 @@ class VideoTopicExtraction(BaseModel):
     movie_content_warnings: List[str] = Field(description="a collection of all content warnings applicable to the video")
     languages: List[str] = Field(description="A list of all languages spoken in the video")
     main_language: List[str] = Field(description="A the main language of the video")
-                                                                   
+
 dict_schema = convert_to_openai_function(VideoTopicExtraction)
 def detect_topics_sentiment(transcript_text):
     """
@@ -89,9 +88,8 @@ def detect_topics_sentiment(transcript_text):
     Returns:
         list: A list of detected topics.
     """
-    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-    GEMINI_GENAI_OBJECT = genai
-    generative_multimodal_model_vertex = GenerativeModel(model_name="gemini-1.0-pro-vision", 
+
+    generative_multimodal_model_vertex = GenerativeModel(model_name="gemini-1.0-pro-vision",
                                                          generation_config=GEMINI_GENERATION_CONFIG)
     generative_multimodal_model = GEMINI_GENAI_OBJECT.GenerativeModel(model_name="gemini-1.5-pro-latest", generation_config=GEMINI_GENERATION_CONFIG,safety_settings=GEMINI_SAFETY_SETTINGS)
     contents = [transcript_text, GEMINI_1_5_VIDEO_TRANSCRIPT_PROMPT]
@@ -99,13 +97,13 @@ def detect_topics_sentiment(transcript_text):
     response_text = str(response.text)
     #print(response_text)
     text_json = {"type":"text",
-                 "text":response_text, 
+                 "text":response_text,
                }
     text_message = {"type": "text",
                     "text": "What are the contents of the JSON ?",
                     }
-    
-    message_contents =  [text_message,text_json]   
+
+    message_contents =  [text_message,text_json]
     message = HumanMessage(content=message_contents)
     llm = ChatVertexAI(model_name="gemini-1.0-pro-001",max_retries=0, temperature=0)
     structured_llm = llm.with_structured_output(dict_schema)
@@ -114,6 +112,6 @@ def detect_topics_sentiment(transcript_text):
     return extraction_response
 
 if __name__ == '__main__':
-    transcript_text = ""
+    transcript_text = GEMINI_1_5_PRO_BENCHMARK_EXTRACTION_LEX_TUCKER_TRANSCRIPT
     topics_sentiment = detect_topics_sentiment(transcript_text)
     print(topics_sentiment)
