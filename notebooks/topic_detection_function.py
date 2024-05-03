@@ -11,6 +11,7 @@ import google.generativeai as genai
 import vertexai
 from vertexai.preview import generative_models
 from vertexai.preview.generative_models import GenerativeModel, Part
+import os
 from dotenv import load_dotenv
 """ from task_configs import (
     GEMINI_1_5_VIDEO_TRANSCRIPT_PROMPT,
@@ -88,7 +89,7 @@ def detect_topics_sentiment(transcript_text):
     Returns:
         list: A list of detected topics.
     """
-    genai.configure(api_key=GOOGLE_API_KEY)
+    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
     GEMINI_GENAI_OBJECT = genai
     generative_multimodal_model_vertex = GenerativeModel(model_name="gemini-1.0-pro-vision", 
                                                          generation_config=GEMINI_GENERATION_CONFIG)
