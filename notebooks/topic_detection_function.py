@@ -26,7 +26,7 @@ VIDEO_PART_MAX_DURATION=120 #Part duration in seconds
 import vertexai
 GEMINI_1_5_VIDEO_TRANSCRIPT_PROMPT=""" You are provided with a transcript of video. Your task is to analyze the video's transcript
  and extract the following information from the transcript:
-1. description: <a proper description of the video in 512 tokens>
+1. description: <a proper summary of the video in 1000 tokens>
 2. key_topics: <a collection of 10 key topics as a valid python list>
 3. sentiments: <a collection of 10 key sentiments as a valid python list>
 4. emotions: <a collection of 10 key emotions as a valid python list>
@@ -67,7 +67,7 @@ vertexai.init(project="vertexai-gemini-hackathon-2024")
 vertexai.preview.init()
 class VideoTopicExtraction(BaseModel):
     '''An Extraction of Key Features from an input video JSON'''
-    description: str = Field(description="A 512 token description of the contents of the video")
+    description: str = Field(description="A 1000 token description of the contents of the video")
     key_topics: List[str] = Field(description="A collection of key topics.")
     sentiments: List[str] = Field(description="A collection of key sentiments expressed in the video")
     emotions: List[str] = Field(description="A collection of key emotions expressed in the video")
@@ -88,6 +88,9 @@ def detect_topics_sentiment(transcript_text):
     Returns:
         list: A list of detected topics.
     """
+
+    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+    GEMINI_GENAI_OBJECT = genai
 
     generative_multimodal_model_vertex = GenerativeModel(model_name="gemini-1.0-pro-vision",
                                                          generation_config=GEMINI_GENERATION_CONFIG)

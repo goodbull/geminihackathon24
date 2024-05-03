@@ -3,6 +3,7 @@ from langchain.chains.llm import LLMChain
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 from langchain_google_genai import ChatGoogleGenerativeAI
+from notebooks.transcribe_translate import TranscribeTranslate
 import Youtube_transcript
 
 # NOTE: The os.environ["GOOGLE_API_KEY"] will need to be populated for the following code to run
@@ -44,11 +45,13 @@ Transcript {context}
 
     # Handles full summarization of the video transcript
     def complete_summarization(self, text, is_YU_url=True):
-        if is_YU_url:
-            transcript = Youtube_transcript.get_clean_transcript(text)
-        else:
-            transcript = text
+        # if is_YU_url:
+        #     transcript = Youtube_transcript.get_clean_transcript(text)
+        # else:
+        #     transcript = text
 
+
+        transcript = text
         results = self.summarize_splits(transcript)
         summaries = [summary['text'] for summary in results if summary]
 
