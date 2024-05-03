@@ -46,20 +46,23 @@ def summary_api():
 
     try:
         transcript = get_transcript(video_id)
+        # print(f"transcript: {transcript}\n")
     except:
         return "No subtitles available for this video", 404
 
     try:
-        final_summary, combined_summaries = summarizer.complete_summarization(
-            transcript, is_YU_url=False
-        )
+        # final_summary, combined_summaries = summarizer.complete_summarization(
+        #     transcript, is_YU_url=False
+        # )
         sentiment_topic = detect_topics_sentiment(transcript)
+        print(f"sentiment: {sentiment_topic}\n")
+        # print(f"summary: {final_summary}\n")
     except Exception as e:
         print(f"Error occurred during summarization: {str(e)}")
         return "An error occurred during summarization. Please try again later.", 500
 
-    return jsonify({"summary": final_summary, "topics_sentiments": sentiment_topic}), 200
-
+    return sentiment_topic, 200
+    # return final_summary, sentiment_topic, 200
 
 def is_transcript_english(transcript):
     """
