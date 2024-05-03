@@ -71,4 +71,3 @@ class TranscribeTranslate():
             return self.fetch_transcript(translation)
         else:
             return [{'text': f"Language '{language}' is not available for translation.", 'start': 0.0, 'duration': 0.0}]
-    
