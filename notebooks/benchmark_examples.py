@@ -1093,3 +1093,10 @@ GEMINI_1_5_PRO_BENCHMARK_EXTRACTION_LEX_TUCKER_TRANSCRIPT = """
         Lex Fridman
         (03:03:40) Thanks for listening to this conversation with Tucker Carlson. To support this podcast, please check out our sponsors in the description. Now, let me leave you with some words from Mahatma Gandhi. When I despair, I remember that all through history the way of truth and love has always won. There have been tyrants and murderers and for a time they can seem invincible, but in the end, they always fall. Think of it, always. Thank you for listening and hope to see you next time.
 """
+GEMINI_1_5_PRO_YOUTUBE_VIDEOS_BENCHMARKS= {"movies": ["https://www.youtube.com/watch?v=9IxUdFJlcDo"],
+                                           "motivational": ["https://www.youtube.com/watch?v=mMEq0r97T_k",
+                                                            "https://www.youtube.com/watch?v=eSvLFPFXjc8",
+                                                            "https://www.youtube.com/watch?v=UF8uR6Z6KLc"],
+                                           "ai": ["https://www.youtube.com/watch?v=sal78ACtGTc",
+                                                  "https://www.youtube.com/watch?v=-mIjwN1o7nE",
+                                                  ]}
