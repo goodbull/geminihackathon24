@@ -1099,4 +1099,8 @@ GEMINI_1_5_PRO_YOUTUBE_VIDEOS_BENCHMARKS= {"movies": ["https://www.youtube.com/w
                                                             "https://www.youtube.com/watch?v=UF8uR6Z6KLc"],
                                            "ai": ["https://www.youtube.com/watch?v=sal78ACtGTc",
                                                   "https://www.youtube.com/watch?v=-mIjwN1o7nE",
-                                                  ]}
+                                                  ],
+                                           "politics": ["https://www.youtube.com/watch?v=NxFkEj7KPC0&t=6s",
+                                                        "https://www.youtube.com/watch?v=vP4iY1TtS3s",
+                                                        "https://www.youtube.com/watch?v=LLv8iay__FI",
+                                                        "https://www.youtube.com/watch?v=lrEkYscgbqE"]}

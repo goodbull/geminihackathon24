@@ -18,7 +18,6 @@ from dotenv import load_dotenv
     GEMINI_GENAI_OBJECT,
     GEMINI_GENERATION_CONFIG,
     GEMINI_SAFETY_SETTINGS
-
 )
 from benchmark_examples import (
     GEMINI_1_5_PRO_BENCHMARK_EXTRACTION_LEX_TUCKER_TRANSCRIPT
@@ -89,8 +88,10 @@ def detect_topics_sentiment(transcript_text):
     Returns:
         list: A list of detected topics.
     """
+
     genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
     GEMINI_GENAI_OBJECT = genai
+
     generative_multimodal_model_vertex = GenerativeModel(model_name="gemini-1.0-pro-vision",
                                                          generation_config=GEMINI_GENERATION_CONFIG)
     generative_multimodal_model = GEMINI_GENAI_OBJECT.GenerativeModel(model_name="gemini-1.5-pro-latest", generation_config=GEMINI_GENERATION_CONFIG,safety_settings=GEMINI_SAFETY_SETTINGS)
@@ -114,6 +115,6 @@ def detect_topics_sentiment(transcript_text):
     return extraction_response
 
 if __name__ == '__main__':
-    transcript_text = ""
+    transcript_text = GEMINI_1_5_PRO_BENCHMARK_EXTRACTION_LEX_TUCKER_TRANSCRIPT
     topics_sentiment = detect_topics_sentiment(transcript_text)
     print(topics_sentiment)
