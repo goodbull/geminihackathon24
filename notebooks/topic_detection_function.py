@@ -113,6 +113,6 @@ def detect_topics_sentiment(transcript_text):
     return extraction_response
 
 if __name__ == '__main__':
-    transcript_text = GEMINI_1_5_PRO_BENCHMARK_EXTRACTION_LEX_TUCKER_TRANSCRIPT
+    transcript_text = ""
     topics_sentiment = detect_topics_sentiment(transcript_text)
     print(topics_sentiment)
