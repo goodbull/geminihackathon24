@@ -1,7 +1,6 @@
 from google.cloud import aiplatform
 import google.generativeai as genai
 import vertexai
-GOOGLE_API_KEY='AIzaSyDxaYa7A_b0d8mvdIeVA5aALEEOgM9YXls'
 genai.configure(api_key=GOOGLE_API_KEY)
 GEMINI_GENAI_OBJECT = genai
 VIDEO_PART_MAX_DURATION=120 #Part duration in seconds
