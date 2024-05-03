@@ -1,5 +1,9 @@
 from google.cloud import aiplatform
+import google.generativeai as genai
 import vertexai
+GOOGLE_API_KEY='AIzaSyDxaYa7A_b0d8mvdIeVA5aALEEOgM9YXls'
+genai.configure(api_key=GOOGLE_API_KEY)
+GEMINI_GENAI_OBJECT = genai
 VIDEO_PART_MAX_DURATION=120 #Part duration in seconds
 GEMINI_1_5_VIDEO_PROMPT=""" You are provided with a video. Your task is to analyze the video and extract the following information from the video:
 1. description: <a proper description of the video in 512 tokens>
