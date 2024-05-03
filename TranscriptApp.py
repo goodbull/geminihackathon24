@@ -6,7 +6,7 @@ from langdetect import detect
 import google.generativeai as genai
 from dotenv import load_dotenv
 from Gemini_Video_Summary import Gemini_Summarization
-from chat_foo import ConfiguredChat
+from configured_chat import ConfiguredChat
 
 load_dotenv()  # Load environment variables from .env file
 application = Flask(__name__)
